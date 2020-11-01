@@ -1,0 +1,35 @@
+<form ngForm #myForm="ngForm">
+  <div class="top">
+    <mat-form-field appearance="outline">
+      <mat-label>Mapping Field Name</mat-label>
+      <input matInput required [(ngModel)]="name" name="name">
+    </mat-form-field>
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="myForm.invalid"
+      (click)="upload()"
+    >匯入
+    </button>
+  </div>
+
+  <div>
+    <button
+      (click)="fileUpload.click()"
+      mat-flat-button
+      color="primary"
+    >
+      <mat-icon>attachment</mat-icon>
+      <span class="ml-1">Add Files</span>
+    </button>
+    <input
+      #fileUpload
+      type="file"
+      [hidden]="true"
+      [(ngModel)]="file" name="file"
+      required
+      (change)="fileChange($event.currentTarget)"
+    />
+    {{ file?.name }}
+  </div>
+</form>
